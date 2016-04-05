@@ -9,11 +9,11 @@ class Footman < Unit
   end
 
   def attack!(enemy)
-    enemy.damage(attack_power) 
-  end
-
-  def damage(attack_power)
-    @health_points -= attack_power
+    if enemy.class == Barracks
+      super(enemy, (attack_power/2.0).ceil)
+    else
+      super(enemy)
+    end 
   end
 
 end

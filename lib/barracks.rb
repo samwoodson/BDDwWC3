@@ -13,6 +13,14 @@ class Barracks
     gold >= 135 && food >= 2
   end
 
+  def can_train_peasant?
+    gold >= 90 && food >= 5
+  end 
+
+  def can_train_siege?
+    gold >= 200 && lumber >= 60 && food >= 3
+  end
+
   def train_footman
     if can_train_footman?
       @gold -= 135
@@ -21,21 +29,14 @@ class Barracks
     end
   end
 
-  def can_train_seige?
-    gold >= 200 && lumber >= 60 && food >= 3
-  end
-
-  def train_seige
-    if can_train_seige?
+  def train_siege
+    if can_train_siege?
       @gold -= 200
       @lumber -= 60
       @food -= 3
+      siege_engine = SiegeEngine.new
     end
   end
-
-  def can_train_peasant?
-    gold >= 90 && food >= 5
-  end  
 
   def train_peasant
     if can_train_peasant?
@@ -48,7 +49,5 @@ class Barracks
   def damage(attack_power)
     @health_points -= attack_power
   end
-
-
 
 end

@@ -9,11 +9,13 @@ class Footman < Unit
   end
 
   def attack!(enemy)
-    if enemy.class == Barracks
-      super(enemy, (attack_power/2.0).ceil)
-    else
-      super(enemy)
-    end 
+    unless dead?
+      if enemy.class == Barracks
+        super(enemy, (attack_power/2.0).ceil)
+      else
+        super(enemy)
+      end 
+    end
   end
 
 end
